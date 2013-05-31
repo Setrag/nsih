@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Index.page()
+GET     /                           controllers.Application.index()
 GET		/scores.html				controllers.Scores.page()
 GET		/login.html					controllers.Login.page()
 

@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table news (
+  id                        integer not null,
+  titre                     varchar(255),
+  contenu                   varchar(255),
+  constraint pk_news primary key (id))
+;
+
 create table project (
   id                        bigint not null,
   name                      varchar(255),
@@ -23,6 +30,8 @@ create table project_user (
   user_email                     varchar(255) not null,
   constraint pk_project_user primary key (project_id, user_email))
 ;
+create sequence news_seq;
+
 create sequence project_seq;
 
 create sequence user_seq;
@@ -38,6 +47,8 @@ alter table project_user add constraint fk_project_user_user_02 foreign key (use
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
+drop table if exists news;
+
 drop table if exists project;
 
 drop table if exists project_user;
@@ -45,6 +56,8 @@ drop table if exists project_user;
 drop table if exists user;
 
 SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists news_seq;
 
 drop sequence if exists project_seq;
 
