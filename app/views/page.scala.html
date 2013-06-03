@@ -10,26 +10,29 @@
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
     </head>
     <body>
-    	<div id="titre">
-	    	<h1>N'si'H</h1>
-	    </div>
-    	<div id="menu">
-    		<ul>
-    			<li>News</li>
-    			<li>Scores</li>
-    			<li>Membre</li>
-    		</ul>	
+    	<div id="head">
+    		<div id="titre">
+	    		<h1>N'si'H</h1>
+		    </div>
+	    	<div id="menu">
+    			<ul>
+    				<li>News</li>
+    				<li>Scores</li>
+    				<li>Membre</li>
+    			</ul>	
+    		</div>
     	</div>
     	<div id="contenu">
     		<div id="main">
     			@content
-    		<div>
+    		</div>
     		<div id="news">
+    			<h2 class="newsTitle">News</h2>
     			@news
     		</div>
     	</div>
     	<div id="footer">
     		Alépée Laurent Martin Xavier (C)
-    	<div>
+    	</div>
     </body>
 </html>
