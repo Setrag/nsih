@@ -1,12 +1,22 @@
-@(message: String)
+@(form: Form[Application.Login])
 
 @page("Nsih - Login"){
-	<h1>Accès espace membre</h1>
-	<p>Veuillez entrer vos identifiants</p>
-	<form>
-		<label>Login</label>
-		<input name="login"><br>
-		<label>Mot de passe</label>
-		<input name="password">
-	</form>
+	<p>Veuillez entrer vos identifiants pour accéder à votre espace personnel.</p>
+	@helper.form(routes.Application.authenticate) {
+		@if(form.hasGlobalErrors) {
+			<p class="error">
+				@form.globalError.message
+			</p>
+		}
+
+		<p>
+		   <input type="email" name="email" placeholder="Email" value="@form("email").value">
+		</p>
+		<p>
+		   <input type="password" name="password" placeholder="Mot de passe">
+		</p>
+		<p>
+		   <button type="submit">S'identifier</button>
+		</p>
+	}
 } {<div><p>NEWS</p></div>}

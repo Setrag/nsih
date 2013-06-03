@@ -35,5 +35,14 @@ public class ModelsTest extends WithApplication {
         assertEquals("Play 2", results.get(0).name);
     }
     */
+    
+    @Test
+    public void tryAuthenticateUser() {
+        new User("bob@gmail.com", "Bob", "secret").save();
+        
+        assertNotNull(User.authenticate("bob@gmail.com", "secret"));
+        assertNull(User.authenticate("bob@gmail.com", "badpassword"));
+        assertNull(User.authenticate("tom@gmail.com", "secret"));
+    }
 }
 

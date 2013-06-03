@@ -4,9 +4,10 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET		/index.html					controllers.Application.index()
-GET		/scores.html				controllers.Application.scores()
-GET		/login.html					controllers.Application.login()
+
+GET		/scores				controllers.Application.scores()
+GET		/login					controllers.Application.login()
+POST	/authenticate		controllers.Application.authenticate()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
