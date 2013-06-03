@@ -1,18 +1,31 @@
 * {margin: 0px; padding: 0px;}
-ul {padding-left: 20px;}
+
+html {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #333333;
+}
+
+#menu a
+{
+color: #fff;
+} 
+
 #head {width: 100%;}	
-	#titre {background-color: skyblue; text-align: center; position: relative;}
+	#titre {background-color: #eee; text-align: center; position: relative;}
 	#titre h1 {font-size: 40px; line-height: 100px; height: 100px;}
 	
-	#menu {width: 100%; background-color: blue;}
-	#menu ul {text-align: center;}
-	#menu ul li {display: inline-block; width:20%; border: 1px solid black; border-radius: 5px; background-color: #DDD;}
+	#menu {width: 100%; background-color: #000;}
+	#menu ul {margin-left:20%}
+	#menu ul li {display: inline-block; border: 1px solid black; border-radius: 5px; background-color: #5; margin-right:10px;}
 
 #contenu {position: relative;}
+#contenu ul {padding-left: 20px;}
+
 	#main {width: 58%; border-right: 1px solid black; border-left: 1px solid black; margin: 2px auto 2px auto; 
 			padding-right: 1%; padding-left: 1%; min-height: 350px}
 			#main p, #main h1, #main h2, #main h3, #main h4 {margin-bottom: 5px; margin-top: 5px;}
-	#news {width: 18%; border: 1px solid gray; border-radius: 4px; position: absolute; right: 1%; top: 5px; }
-	#news .newsTitle {border-bottom: 1px solid gray; background: yellow;}
+	#news {width: 18%; border: 1px solid gray; border-radius: 4px; position: absolute; right: 1%; top: 5px;}
+	#news .newsTitle {border-bottom: 1px solid gray; background: #EEE; padding-left: 30px;}
+	#news .newsContent {padding-left: 10px; padding-right: 10px;}
 	
 #footer {width: 96%; height: 40px; padding-left: 2%; padding-right: 2%; border-top: 1px solid black; text-align: center;}
