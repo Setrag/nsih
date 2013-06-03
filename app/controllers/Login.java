@@ -5,9 +5,12 @@ import play.mvc.*;
 
 import views.html.*;
 
+import models.*;
+
 public class Login extends Controller {
+  
     public static Result page() {
-        return ok(index.render("Login."));
+        return ok(login.render("Login window"));
     }
 }
 
