@@ -13,4 +13,4 @@
 	#news {width: 18%; border: 1px solid gray; border-radius: 4px; position: absolute; right: 1%; top: 0px; }
 	#news .newsTitle {border-bottom: 1px solid gray; background: yellow;}
 	
-#footer {bottom: 0px; width: 100%;}
+#footer {bottom: 0px; width: 96%; height: 40px; padding-left: 2%; padding-right: 2%;  position: absolute; border-top: 1px solid black; text-align: center;}
