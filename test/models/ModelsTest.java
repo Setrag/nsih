@@ -21,6 +21,7 @@ public class ModelsTest extends WithApplication {
         assertEquals("Bob", bob.name);
     }
     
+    /*
     @Test
     public void findProjectsInvolving() {
         new User("bob@gmail.com", "Bob", "secret").save();
@@ -33,5 +34,6 @@ public class ModelsTest extends WithApplication {
         assertEquals(1, results.size());
         assertEquals("Play 2", results.get(0).name);
     }
+    */
 }
 
