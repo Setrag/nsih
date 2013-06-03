@@ -10,6 +10,7 @@ import models.*;
 
 public class Application extends Controller {
   
+  	
     public static Result index() {
         return ok(index.render(Project.find.all(),Task.find.all()));
     }
@@ -18,8 +19,21 @@ public class Application extends Controller {
         return ok(login.render(Form.form(Login.class)) );
     }
     
+    public static Result logout() {
+		session().clear();
+		flash("success", "Vous vous êtes déconnecté avec succès.");
+		return redirect(
+		    routes.Application.login()
+		);
+	}
+    
     public static Result scores() {
     	return ok(scores.render("Scores"));
+    }
+    
+    @Security.Authenticated(Secured.class)
+    public static Result espacePerso() {
+    	return ok(espacePerso.render("Espace perso"));
     }
     
     public static Result authenticate() {
@@ -30,7 +44,7 @@ public class Application extends Controller {
 		    session().clear();
 		    session("email", loginForm.get().email);
 		    return redirect(
-		        routes.Application.index()
+		        routes.Application.espacePerso()
 		    );
 		}
 	}

@@ -1,14 +1,14 @@
 @(form: Form[Application.Login])
 
-@page("Nsih - Login"){
+@page("Nsih - Authentification"){
+	@if(flash.contains("success")) {
+		<p class="success">
+		    @flash.get("success")
+		</p><br>
+	}
+	
 	<p>Veuillez entrer vos identifiants pour accéder à votre espace personnel.</p>
 	@helper.form(routes.Application.authenticate) {
-		@if(form.hasGlobalErrors) {
-			<p class="error">
-				@form.globalError.message
-			</p>
-		}
-
 		<p>
 		   <input type="email" name="email" placeholder="Email" value="@form("email").value">
 		</p>
@@ -18,5 +18,10 @@
 		<p>
 		   <button type="submit">S'identifier</button>
 		</p>
+		@if(form.hasGlobalErrors) {
+			<p class="error">
+				@form.globalError.message
+			</p>
+		}
 	}
 } {<div><p>NEWS</p></div>}
