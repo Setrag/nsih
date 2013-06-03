@@ -1,0 +1,3 @@
+#titre {width: 100%; height: 150px; background-color: skyblue;}
+#menu {width: 100%; background-color: blue;}
+#menu ul li {display: inline-block;}
