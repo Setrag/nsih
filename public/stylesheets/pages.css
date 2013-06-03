@@ -1,5 +1,5 @@
 * {margin: 0px; padding: 0px;}
-
+ul {padding-left: 20px;}
 #head {width: 100%;}	
 	#titre {background-color: skyblue; text-align: center; position: relative;}
 	#titre h1 {font-size: 40px; line-height: 100px; height: 100px;}
@@ -9,8 +9,10 @@
 	#menu ul li {display: inline-block; width:20%; border: 1px solid black; border-radius: 5px; background-color: #DDD;}
 
 #contenu {position: relative;}
-	#main {width: 60%; border-right: 1px solid black; border-left: 1px solid black; margin: 10px auto 10px auto;}
-	#news {width: 18%; border: 1px solid gray; border-radius: 4px; position: absolute; right: 1%; top: 0px; }
+	#main {width: 58%; border-right: 1px solid black; border-left: 1px solid black; margin: 2px auto 2px auto; 
+			padding-right: 1%; padding-left: 1%; min-height: 350px}
+			#main p, #main h1, #main h2, #main h3, #main h4 {margin-bottom: 5px; margin-top: 5px;}
+	#news {width: 18%; border: 1px solid gray; border-radius: 4px; position: absolute; right: 1%; top: 5px; }
 	#news .newsTitle {border-bottom: 1px solid gray; background: yellow;}
 	
-#footer {bottom: 0px; width: 96%; height: 40px; padding-left: 2%; padding-right: 2%;  position: absolute; border-top: 1px solid black; text-align: center;}
+#footer {width: 96%; height: 40px; padding-left: 2%; padding-right: 2%; border-top: 1px solid black; text-align: center;}
