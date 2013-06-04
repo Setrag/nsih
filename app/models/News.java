@@ -11,6 +11,7 @@ public class News extends Model {
 	public int id;
 	public String titre;
 	public String contenu;
+	@ManyToOne
 	public User auteur;
 
 	public News(int id, String titre, String contenu) {

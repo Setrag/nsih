@@ -15,6 +15,8 @@ import static play.libs.Json.toJson;
 import org.codehaus.jackson.JsonNode;           
 import org.codehaus.jackson.node.ObjectNode;
 
+import java.util.*;
+
 public class Application extends Controller {
   
   	
@@ -43,15 +45,17 @@ public class Application extends Controller {
 		JsonNode json = request().body().asJson();
 		ObjectNode result = Json.newObject();
 		String name = ""; //= json.findPath("name").getTextValue();
-		if(name == null) {
-			result.put("status", "KO");
-			result.put("message", "Missing parameter [name]");
-			return badRequest(result);
-		} else {
-			result.put("status", "OK");
-			result.put("message", "Hello " + name);
-			return ok(result);
+		List<Score> listScores = Score.find.all();
+		
+		for(Iterator<Score> i = listScores.iterator(); i.hasNext(); ) {
+		  Score item = i.next();
+		  result.put("score", Float.toString(item.valeur));
+		  result.put("jeu", item.jeu.nom);
+		  result.put("auteur", item.auteur.email);
 		}
+		
+		return ok(result);
+
 	}
     
     @Security.Authenticated(Secured.class)

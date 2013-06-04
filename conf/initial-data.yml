@@ -182,4 +182,19 @@
                     id: 4
     assignedTo: !!models.User
                     email: sadek@sample.com
+                    
+            
+- !!models.Jeu
+  nom: Symon
+
+- !!models.Jeu
+  nom: Nsih        
+           
+- !!models.Score
+    id: 1
+    valeur: 10.5
+    auteur: !!models.User
+               email: maxime@sample.com
+    jeu:    !!models.Jeu
+               nom: Symon
             
