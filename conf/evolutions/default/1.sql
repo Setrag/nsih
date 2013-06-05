@@ -3,10 +3,16 @@
 
 # --- !Ups
 
+create table jeu (
+  nom                       varchar(255) not null,
+  constraint pk_jeu primary key (nom))
+;
+
 create table news (
   id                        integer not null,
   titre                     varchar(255),
   contenu                   varchar(255),
+  auteur_email              varchar(255),
   constraint pk_news primary key (id))
 ;
 
@@ -19,6 +25,9 @@ create table project (
 
 create table score (
   id                        integer not null,
+  valeur                    float,
+  auteur_email              varchar(255),
+  jeu_nom                   varchar(255),
   constraint pk_score primary key (id))
 ;
 
@@ -46,6 +55,8 @@ create table project_user (
   user_email                     varchar(255) not null,
   constraint pk_project_user primary key (project_id, user_email))
 ;
+create sequence jeu_seq;
+
 create sequence news_seq;
 
 create sequence project_seq;
@@ -56,10 +67,16 @@ create sequence task_seq;
 
 create sequence user_seq;
 
-alter table task add constraint fk_task_assignedTo_1 foreign key (assigned_to_email) references user (email) on delete restrict on update restrict;
-create index ix_task_assignedTo_1 on task (assigned_to_email);
-alter table task add constraint fk_task_project_2 foreign key (project_id) references project (id) on delete restrict on update restrict;
-create index ix_task_project_2 on task (project_id);
+alter table news add constraint fk_news_auteur_1 foreign key (auteur_email) references user (email) on delete restrict on update restrict;
+create index ix_news_auteur_1 on news (auteur_email);
+alter table score add constraint fk_score_auteur_2 foreign key (auteur_email) references user (email) on delete restrict on update restrict;
+create index ix_score_auteur_2 on score (auteur_email);
+alter table score add constraint fk_score_jeu_3 foreign key (jeu_nom) references jeu (nom) on delete restrict on update restrict;
+create index ix_score_jeu_3 on score (jeu_nom);
+alter table task add constraint fk_task_assignedTo_4 foreign key (assigned_to_email) references user (email) on delete restrict on update restrict;
+create index ix_task_assignedTo_4 on task (assigned_to_email);
+alter table task add constraint fk_task_project_5 foreign key (project_id) references project (id) on delete restrict on update restrict;
+create index ix_task_project_5 on task (project_id);
 
 
 
@@ -70,6 +87,8 @@ alter table project_user add constraint fk_project_user_user_02 foreign key (use
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
+
+drop table if exists jeu;
 
 drop table if exists news;
 
@@ -84,6 +103,8 @@ drop table if exists task;
 drop table if exists user;
 
 SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists jeu_seq;
 
 drop sequence if exists news_seq;
 

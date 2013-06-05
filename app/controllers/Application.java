@@ -9,6 +9,15 @@ import views.html.*;
 
 import models.*;
 
+import play.mvc.BodyParser;                     
+import play.libs.Json;
+import play.libs.Json.*;                        
+import static play.libs.Json.toJson;
+import org.codehaus.jackson.JsonNode;           
+import org.codehaus.jackson.node.ObjectNode;
+
+import java.util.*;
+
 public class Application extends Controller {
   
   	
@@ -31,6 +40,24 @@ public class Application extends Controller {
     public static Result scores() {
     	return ok(scores.render("Scores", new Html("<p>test</p>")));
     }
+    
+    @BodyParser.Of(BodyParser.Json.class)
+	public static Result scoresJson() {
+		JsonNode json = request().body().asJson();
+		ObjectNode result = Json.newObject();
+		String name = ""; //= json.findPath("name").getTextValue();
+		List<Score> listScores = Score.find.all();
+		
+		for(Iterator<Score> i = listScores.iterator(); i.hasNext(); ) {
+		  Score item = i.next();
+		  result.put("score", Float.toString(item.valeur));
+		  result.put("jeu", item.jeu.nom);
+		  result.put("auteur", item.auteur.email);
+		}
+		
+		return ok(result);
+
+	}
     
     @Security.Authenticated(Secured.class)
     public static Result espacePerso() {
