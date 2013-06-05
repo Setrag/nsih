@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import play.api.templates.Html;
 import play.data.*;
 
 import views.html.*;
@@ -28,7 +29,7 @@ public class Application extends Controller {
 	}
     
     public static Result scores() {
-    	return ok(scores.render("Scores"));
+    	return ok(scores.render("Scores", new Html("<p>test</p>")));
     }
     
     @Security.Authenticated(Secured.class)
