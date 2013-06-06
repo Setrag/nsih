@@ -7,6 +7,22 @@ users:
     email:      guillaume@sample.com
     name:       Guillaume Bort
     password:   secret
+    
+- !!models.User
+    email:      admin@nsih.com
+    name:       Le Professionnel
+    password:   secret
+    isAdmin:    true
+    
+- !!models.User
+    email:      laurent@alepee.fr
+    name:       Laurent
+    password:   secret
+
+- !!models.User
+    email:      xavier@martin.fr
+    name:       Xavier
+    password:   secret
 
 - !!models.User
     email:      maxime@sample.com
@@ -51,176 +67,6 @@ news:
         contenu:   Un nouveau champion est née, en battant le record établie du Symon, son nom Xavier !!
         typeN:     SCORES
 
-# Projets
-
-projects:
-
-- !!models.Project
-    id:         1
-    name:       Play 2.0   
-    folder:     Play framework
-    members:
-        - !!models.User
-            email: guillaume@sample.com
-        - !!models.User
-            email: maxime@sample.com
-        - !!models.User
-            email: sadek@sample.com
-        - !!models.User
-            email: erwan@sample.com
-
-- !!models.Project
-    id:         2
-    name:       Play 1.2.4
-    folder:     Play framework
-    members:
-        - !!models.User
-            email: guillaume@sample.com
-        - !!models.User
-            email: erwan@sample.com
-            
-- !!models.Project
-    id:         3
-    name:       Website 
-    folder:     Play framework
-    members:
-        - !!models.User
-            email: guillaume@sample.com
-        - !!models.User
-            email: maxime@sample.com
-
-- !!models.Project
-    id:         4
-    name:       Secret project 
-    folder:     Zenexity
-    members:
-        - !!models.User
-            email: guillaume@sample.com
-        - !!models.User
-            email: maxime@sample.com
-        - !!models.User
-            email: sadek@sample.com
-        - !!models.User
-            email: erwan@sample.com
-            
-- !!models.Project
-    id:         5
-    name:       Playmate
-    folder:     Zenexity
-    members:
-        - !!models.User
-            email: maxime@sample.com
-        
-- !!models.Project
-    id:         6
-    name:       Things to do
-    folder:     Personal
-    members:
-        - !!models.User
-            email: guillaume@sample.com
-
-- !!models.Project
-    id:         7
-    name:       Play samples
-    folder:     Zenexity
-    members:
-        - !!models.User
-            email: guillaume@sample.com
-        - !!models.User
-            email: maxime@sample.com
-            
-- !!models.Project
-    id:         8
-    name:       Private
-    folder:     Personal
-    members:
-        - !!models.User
-            email: guillaume@sample.com
-
-- !!models.Project
-    id:         9
-    name:       Private
-    folder:     Personal
-    members:
-        - !!models.User
-            email: erwan@sample.com
-            
-- !!models.Project
-    id:         10
-    name:       Private
-    folder:     Personal
-    members:
-        - !!models.User
-            email: sadek@sample.com
-            
-- !!models.Project
-    id:         11
-    name:       Private
-    folder:     Personal
-    members:
-        - !!models.User
-            email: maxime@sample.com
-
-# Tasks
-
-tasks: 
-          
-- !!models.Task
-    title:      Fix the documentation
-    done:       false
-    folder:     Todo
-    project:    !!models.Project
-                    id: 1
-    assignedTo: !!models.User
-                    email: guillaume@sample.com
-                    
-- !!models.Task
-    title:      Prepare the beta release
-    done:       false
-    folder:     Urgent
-    dueDate:    2011-11-15
-    project:    !!models.Project
-                    id: 1
-    assignedTo: !!models.User
-                    email: guillaume@sample.com
-
-- !!models.Task
-    title:      Buy some milk
-    done:       false
-    folder:     Todo
-    project:    !!models.Project
-                    id: 9
-
-- !!models.Task
-    title:      Check 1.2.4-RC2
-    done:       false
-    folder:     Todo
-    dueDate:    2011-11-18
-    project:    !!models.Project
-                    id: 2
-    assignedTo: !!models.User
-                    email: guillaume@sample.com
-                    
-- !!models.Task
-    title:      Finish zentask integration
-    done:       true
-    folder:     Todo
-    dueDate:    2011-11-15
-    project:    !!models.Project
-                    id: 7
-    assignedTo: !!models.User
-                    email: maxime@sample.com
-                    
-- !!models.Task
-    title:      Release the secret project
-    done:       false
-    folder:     Todo
-    dueDate:    2012-01-01
-    project:    !!models.Project
-                    id: 4
-    assignedTo: !!models.User
-                    email: sadek@sample.com
-                    
 # Jeu
 
 jeu:
@@ -231,15 +77,46 @@ jeu:
 - !!models.Jeu
   nom: Nsih        
 
+- !!models.Jeu
+  nom: Tetrys
+  
 # Score
 
 scores:
            
 - !!models.Score
-    id: 1
-    valeur: 10.5
+    valeur: 10
     auteur: !!models.User
                email: maxime@sample.com
     jeu:    !!models.Jeu
                nom: Symon
-            
+               
+- !!models.Score
+    valeur: 14
+    auteur: !!models.User
+               email: guillaume@sample.com
+    jeu:    !!models.Jeu
+               nom: Symon
+
+- !!models.Score
+    valeur: 16
+    auteur: !!models.User
+               email: guillaume@sample.com
+    jeu:    !!models.Jeu
+               nom: Symon
+               
+- !!models.Score
+    valeur: 18
+    auteur: !!models.User
+               email: guillaume@sample.com
+    jeu:    !!models.Jeu
+               nom: Tetrys
+               
+- !!models.Score
+    valeur: 6
+    auteur: !!models.User
+               email: guillaume@sample.com
+    jeu:    !!models.Jeu
+               nom: Tetrys
+
+

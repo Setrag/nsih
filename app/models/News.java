@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+
 import play.db.ebean.*;
 import com.avaje.ebean.*;
 
@@ -18,6 +19,7 @@ public class News extends Model {
 	public String titre;
 	public String contenu;
 	public TypeNews typeN;
+	
 	@ManyToOne
 	public User auteur;
 	
@@ -28,7 +30,7 @@ public class News extends Model {
 		this.typeN = type;
 	}
 	
-	public static Finder<String,News> find = new Finder<String,News>(
+	public static Model.Finder<String,News> find = new Model.Finder<String,News>(
         String.class, News.class
     );
 }

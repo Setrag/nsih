@@ -1,0 +1,39 @@
+@(user: User, scoresList: List[Score], form: Form[Application.FormSupprimerUtilisateur])
+
+@page("Nsih - Espace perso") {
+	<h1>Espace personnel</h1>
+	@if(user != null) {
+			Connecté en tant que @user.email, administrateur.
+	}
+	<br>
+	<a href="@routes.Application.logout()">Se déconnecter</a>
+	<br>
+	<h2>Interface d'administration</h2>
+	@helper.form(routes.Application.supprimerUtilisateur) {
+		<p>
+		   <input type="email" name="email" placeholder="Email" value="@form("email").value">
+		</p>
+		<p>
+		   <button type="submit">Supprimer utilisateur</button>
+		</p>
+		@if(form.hasGlobalErrors) {
+			<p class="error">
+				@form.globalError.message
+			</p>
+		}
+	}
+	
+	@for(user <- User.find.all()) {
+		@user.email<br>
+	}
+	
+	<br><br>
+	Vos scores:
+	<br>
+	<ul>
+	@for(score <- scoresList) {
+		<li>@score.jeu.nom, @score.valeur</li>
+	}
+	</ul>
+	
+}

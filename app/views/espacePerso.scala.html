@@ -1,6 +1,19 @@
-@(message: String)
+@(user: User, message: String, scoresList: List[Score])
 
 @page("Nsih - Espace perso") {
 	<h1>Espace personnel</h1>
+	@if(user != null) {
+			Connecté en tant que @user.email.
+	}
+	<br>
 	<a href="@routes.Application.logout()">Se déconnecter</a>
+	<br><br>
+	Vos scores:
+	<br>
+	<ul>
+	@for(score <- scoresList) {
+		<li>@score.jeu.nom, @score.valeur</li>
+	}
+	</ul>
+	
 }

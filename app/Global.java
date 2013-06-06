@@ -15,7 +15,6 @@ public class Global extends GlobalSettings {
             Ebean.save(all.get("news"));
             Ebean.save(all.get("jeu"));
             Ebean.save(all.get("scores"));
-            Ebean.save(all.get("projects")); // a supprimé
         }
     }
 }
