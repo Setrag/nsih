@@ -128,20 +128,16 @@ public class Application extends Controller {
 		} else {
 		    User user = User.find.where().eq("email", deleteUserForm.get().email).findUnique();
 		    
-		    List<Score> listScore = Score.find.where().eq("auteur.name", user.email).findList();
-		    
+		    List<Score> listScore = Score.find.where().eq("auteur.email", user.email).findList();
 		    for (Score score : listScore) {
 		    	score.delete();
 		    }
-		    
 		     
-		    List<News> listNews = News.find.where().eq("auteur.name", user.email).findList();
+		    List<News> listNews = News.find.where().eq("auteur.email", user.email).findList();
 		    
 		    for (News news : listNews) {
 		    	news.delete();
 		    }
-		    
-		    System.out.println("SupprimerUtilisateur: " + user.email);
 		    
 		    user.delete();
 		    
