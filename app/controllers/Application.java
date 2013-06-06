@@ -12,6 +12,7 @@ import models.*;
 import play.mvc.BodyParser;                     
 import play.libs.Json;
 import play.libs.Json.*;                        
+import scala.collection.mutable.StringBuilder;
 import static play.libs.Json.toJson;
 import org.codehaus.jackson.JsonNode;           
 import org.codehaus.jackson.node.ObjectNode;
@@ -38,7 +39,7 @@ public class Application extends Controller {
 	}
     
     public static Result scores() {
-    	return ok(scores.render("Scores", new Html("<p>test</p>")));
+    	return ok(scores.render("Scores", new Html(new StringBuilder("<p>test</p>"))));
     }
     
     @BodyParser.Of(BodyParser.Json.class)
