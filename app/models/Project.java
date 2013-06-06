@@ -6,7 +6,7 @@ import play.db.ebean.*;
 
 @Entity
 public class Project extends Model {
-
+	// TODO retirer cette class de repertoire ceci n'est un tuteur.
     @Id
     public Long id;
     public String name;
