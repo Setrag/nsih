@@ -5,6 +5,22 @@
     email:      guillaume@sample.com
     name:       Guillaume Bort
     password:   secret
+    
+- !!models.User
+    email:      admin@nsih.com
+    name:       Le Professionnel
+    password:   secret
+    isAdmin:    true
+    
+- !!models.User
+    email:      laurent@alepee.fr
+    name:       Laurent
+    password:   secret
+
+- !!models.User
+    email:      xavier@martin.fr
+    name:       Xavier
+    password:   secret
 
 - !!models.User
     email:      maxime@sample.com
@@ -188,10 +204,9 @@
   nom: Symon
 
 - !!models.Jeu
-  nom: Nsih        
+  nom: Tetrys       
            
 - !!models.Score
-    id: 1
     valeur: 10
     auteur: !!models.User
                email: maxime@sample.com
@@ -199,7 +214,6 @@
                nom: Symon
                
 - !!models.Score
-    id: 2
     valeur: 14
     auteur: !!models.User
                email: guillaume@sample.com
@@ -207,10 +221,24 @@
                nom: Symon
 
 - !!models.Score
-    id: 3
     valeur: 16
     auteur: !!models.User
                email: guillaume@sample.com
     jeu:    !!models.Jeu
                nom: Symon
+               
+- !!models.Score
+    valeur: 18
+    auteur: !!models.User
+               email: guillaume@sample.com
+    jeu:    !!models.Jeu
+               nom: Tetrys
+               
+- !!models.Score
+    valeur: 6
+    auteur: !!models.User
+               email: guillaume@sample.com
+    jeu:    !!models.Jeu
+               nom: Tetrys
+
 

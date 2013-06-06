@@ -1,7 +1,11 @@
-@(message: String)
+@(message: String, scoresList: List[Score])
 
 @page("Nsih - Joueurs d'élite") {
-	<h1>WTF ????</h1>    
+	<ul>
+	@for(score <- scoresList) {
+		<li>@score.jeu.nom, @score.valeur - @score.auteur.name</li>
+	}
+	</ul>   
 } {
-	<h2>WTF 2 ????</h2>
+	<h2></h2>
 }

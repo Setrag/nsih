@@ -1,9 +1,12 @@
-@(projects: List[Project], todoTasks: List[Task])
+@(user: User, projects: List[Project], todoTasks: List[Task])
 
 @page("Nsih - Accueil"){
 	<header>
+		@if(user != null) {
+			Connecté en tant que @user.email@if(user.isAdmin == true) {, administrateur.}
+		}
         <hgroup>
-            <h1>Dernièrement </h1>
+            <h1>Dernièrement</h1>
             <h2>Qu'est ce que.. quoi</h2>
         </hgroup>
     </header>

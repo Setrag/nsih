@@ -15,13 +15,19 @@ import static play.libs.Json.toJson;
 import org.codehaus.jackson.JsonNode;           
 import org.codehaus.jackson.node.ObjectNode;
 
+import com.avaje.ebean.Expression;
+
 import java.util.*;
 
 public class Application extends Controller {
-  
-  	
+	
     public static Result index() {
-        return ok(index.render(Project.find.all(),Task.find.all()));
+    	String username = session().get("email");
+    	User user = null;
+    	if (username != null) {
+    		user = User.find.byId(username);
+    	}
+    	return ok(index.render(user, Project.find.all(),Task.find.all()));
     }
     
     public static Result login() {
@@ -37,7 +43,7 @@ public class Application extends Controller {
 	}
     
     public static Result scores() {
-    	return ok(scores.render("Scores"));
+    	return ok(scores.render("Scores", Score.find.orderBy().asc("jeu.nom").orderBy().desc("valeur").findList()));
     }
     
     @BodyParser.Of(BodyParser.Json.class)
@@ -60,7 +66,20 @@ public class Application extends Controller {
     
     @Security.Authenticated(Secured.class)
     public static Result espacePerso() {
-    	return ok(espacePerso.render("Espace perso"));
+    	String username = session().get("email");
+    	User user = null;
+    	if (username != null) {
+    		user = User.find.byId(username);
+    	}
+    	return ok(espacePerso.render(user, "Espace perso", Score.find.where().eq("auteur.email", username).orderBy().asc("jeu.nom").orderBy().desc("valeur").findList()));
+    	//return ok(espacePerso.render(user, "Espace perso", Score.find.where().select("*").fe ));
+    }
+    
+    public static Result soumettreScore() {
+    	float scoreVal = Float.parseFloat(request().queryString().get("score")[0]);
+    	String userStr = request().queryString().get("user")[0];
+    	String jeuStr = request().queryString().get("jeu"));
+    	return ok();
     }
     
     public static Result authenticate() {
@@ -70,6 +89,9 @@ public class Application extends Controller {
 		} else {
 		    session().clear();
 		    session("email", loginForm.get().email);
+		    
+		    User user = User.find.where().eq("email", loginForm.get().email).findUnique();
+		    session("admin", Boolean.toString(user.isAdmin));
 		    return redirect(
 		        routes.Application.espacePerso()
 		    );
