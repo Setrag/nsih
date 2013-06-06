@@ -192,9 +192,25 @@
            
 - !!models.Score
     id: 1
-    valeur: 10.5
+    valeur: 10
     auteur: !!models.User
                email: maxime@sample.com
     jeu:    !!models.Jeu
                nom: Symon
-            
+               
+- !!models.Score
+    id: 2
+    valeur: 14
+    auteur: !!models.User
+               email: guillaume@sample.com
+    jeu:    !!models.Jeu
+               nom: Symon
+
+- !!models.Score
+    id: 3
+    valeur: 16
+    auteur: !!models.User
+               email: guillaume@sample.com
+    jeu:    !!models.Jeu
+               nom: Symon
+
