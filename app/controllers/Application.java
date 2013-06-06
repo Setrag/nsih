@@ -78,8 +78,17 @@ public class Application extends Controller {
     public static Result soumettreScore() {
     	float scoreVal = Float.parseFloat(request().queryString().get("score")[0]);
     	String userStr = request().queryString().get("user")[0];
-    	String jeuStr = request().queryString().get("jeu"));
-    	return ok();
+    	String jeuStr = request().queryString().get("jeu")[0];
+    	
+    	User user = User.find.byId(userStr);
+    	Jeu jeu = Jeu.find.byId(jeuStr);
+    	if (user != null && jeu != null && scoreVal >= 0.0f) {
+    		Score score = new Score(scoreVal, user, jeu);
+    		score.save();
+    		return ok();
+    	} else {
+    		return badRequest();
+    	}
     }
     
     public static Result authenticate() {

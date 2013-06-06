@@ -8,6 +8,7 @@ import com.avaje.ebean.*;
 public class Score extends Model {
 
 	@Id
+	@GeneratedValue
 	public int id;
     public float valeur;
     @ManyToOne
@@ -15,8 +16,7 @@ public class Score extends Model {
     @ManyToOne
     public Jeu jeu;
     
-    public Score(int id, float valeur, User auteur, Jeu jeu) {
-      this.id = id;
+    public Score(float valeur, User auteur, Jeu jeu) {
       this.valeur = valeur;
       this.auteur = auteur;
       this.jeu = jeu;
