@@ -12,7 +12,9 @@ create table news (
   id                        integer not null,
   titre                     varchar(255),
   contenu                   varchar(255),
+  type_n                    integer,
   auteur_email              varchar(255),
+  constraint ck_news_type_n check (type_n in (0,1,2)),
   constraint pk_news primary key (id))
 ;
 

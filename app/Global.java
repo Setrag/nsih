@@ -9,7 +9,13 @@ public class Global extends GlobalSettings {
     public void onStart(Application app) {
         // Check if the database is empty
         if (User.find.findRowCount() == 0) {
-            Ebean.save((List) Yaml.load("initial-data.yml"));
+            Map<String, List<Object>> all = (Map<String, List<Object>>) Yaml.load("initial-data.yml");
+            	
+            Ebean.save(all.get("users"));
+            Ebean.save(all.get("news"));
+            Ebean.save(all.get("jeu"));
+            Ebean.save(all.get("scores"));
+            Ebean.save(all.get("projects")); // a supprimé
         }
     }
 }

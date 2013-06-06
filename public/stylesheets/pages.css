@@ -24,8 +24,10 @@ html {
 	#main {width: 58%; border-right: 1px solid black; border-left: 1px solid black; margin: 2px auto 2px auto; 
 			padding-right: 1%; padding-left: 1%; min-height: 350px}
 			#main p, #main h1, #main h2, #main h3, #main h4 {margin-bottom: 5px; margin-top: 5px;}
-	#news {width: 18%; border: 1px solid gray; border-radius: 4px; position: absolute; right: 1%; top: 5px;}
-	#news .newsTitle {border-bottom: 1px solid gray; background: #EEE; padding-left: 30px;}
-	#news .newsContent {padding-left: 10px; padding-right: 10px;}
-	
+			#headNews {border-bottom: 1px solid black}
+			.news {margin-top: 10px;}
+			.newsLine .newsLineContenu {padding-left: 10px;}
+	#newsBox {width: 18%; border: 1px solid gray; border-radius: 4px; position: absolute; right: 1%; top: 5px;}
+	#newsBox .newsBoxTitle {border-bottom: 1px solid gray; background: #EEE; padding-left: 30px;}
+			.newsBoxLine {padding-left: 10px; padding-right: 10px; border-bottom: 1px solid black;}
 #footer {width: 96%; height: 40px; padding-left: 2%; padding-right: 2%; border-top: 1px solid black; text-align: center;}

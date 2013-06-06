@@ -23,7 +23,7 @@ public class Application extends Controller {
   
   	
     public static Result index() {
-        return ok(index.render(Project.find.all(),Task.find.all()));
+        return ok(index.render(News.find.all()));
     }
     
     public static Result login() {

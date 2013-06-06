@@ -22,7 +22,7 @@ users:
         email:      erwan@sample.com
         name:       Erwan Loisant
         password:   secret
-    
+
 # Projects
 
 projects:
