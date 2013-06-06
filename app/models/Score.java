@@ -4,6 +4,7 @@ import javax.persistence.*;
 import play.db.ebean.*;
 import com.avaje.ebean.*;
 
+
 @Entity
 public class Score extends Model {
 

@@ -27,7 +27,7 @@ public class Application extends Controller {
     	if (username != null) {
     		user = User.find.byId(username);
     	}
-    	return ok(index.render(user, Project.find.all(),Task.find.all()));
+    	return ok(index.render(user));
     }
     
     public static Result login() {
@@ -53,15 +53,7 @@ public class Application extends Controller {
 		String name = ""; //= json.findPath("name").getTextValue();
 		List<Score> listScores = Score.find.all();
 		
-		for(Iterator<Score> i = listScores.iterator(); i.hasNext(); ) {
-		  Score item = i.next();
-		  result.put("score", Float.toString(item.valeur));
-		  result.put("jeu", item.jeu.nom);
-		  result.put("auteur", item.auteur.email);
-		}
-		
-		return ok(result);
-
+		return ok(scoresJson.render(listScores));
 	}
     
     @Security.Authenticated(Secured.class)
@@ -71,7 +63,17 @@ public class Application extends Controller {
     	if (username != null) {
     		user = User.find.byId(username);
     	}
-    	return ok(espacePerso.render(user, "Espace perso", Score.find.where().eq("auteur.email", username).orderBy().asc("jeu.nom").orderBy().desc("valeur").findList()));
+    	if (!user.isAdmin) {
+    		return ok(espacePerso.render(user,
+    			"Espace perso",
+    			Score.find.where().eq("auteur.email", username).orderBy().asc("jeu.nom").orderBy().desc("valeur").findList()));
+    	} else {
+    		return ok(
+    				espaceAdmin.render(user,
+    						Score.find.where().eq("auteur.email", username).orderBy().asc("jeu.nom").orderBy().desc("valeur").findList(),
+    						Form.form(FormSupprimerUtilisateur.class)
+    				));
+    	}
     	//return ok(espacePerso.render(user, "Espace perso", Score.find.where().select("*").fe ));
     }
     
@@ -114,6 +116,47 @@ public class Application extends Controller {
     	public String validate() {
 			if (User.authenticate(email, password) == null) {
 			  return "Nom d'utilisateur ou mot de passe invalide.";
+			}
+			return null;
+		}
+    }
+    
+    public static Result supprimerUtilisateur() {
+		Form<FormSupprimerUtilisateur> deleteUserForm = Form.form(FormSupprimerUtilisateur.class).bindFromRequest();
+		if (deleteUserForm.hasErrors()) {
+		    return badRequest();
+		} else {
+		    User user = User.find.where().eq("email", deleteUserForm.get().email).findUnique();
+		    
+		    List<Score> listScore = Score.find.where().eq("auteur.name", user.email).findList();
+		    
+		    for (Score score : listScore) {
+		    	score.delete();
+		    }
+		    
+		     
+		    List<News> listNews = News.find.where().eq("auteur.name", user.email).findList();
+		    
+		    for (News news : listNews) {
+		    	news.delete();
+		    }
+		    
+		    System.out.println("SupprimerUtilisateur: " + user.email);
+		    
+		    user.delete();
+		    
+		    return redirect(
+		        routes.Application.espacePerso()
+		    );
+		}
+	}
+    
+    public static class FormSupprimerUtilisateur {
+    	public String email;
+    	
+    	public String validate() {
+			if (User.find.where().idEq(email) == null) {
+			  return "Nom d'utilisateur invalide.";
 			}
 			return null;
 		}

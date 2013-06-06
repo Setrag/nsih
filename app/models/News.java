@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+
 import play.db.ebean.*;
 import com.avaje.ebean.*;
 
@@ -11,6 +12,7 @@ public class News extends Model {
 	public int id;
 	public String titre;
 	public String contenu;
+	
 	@ManyToOne
 	public User auteur;
 
