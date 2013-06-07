@@ -12,8 +12,17 @@ create table news (
   id                        integer not null,
   titre                     varchar(255),
   contenu                   varchar(255),
+  type_n                    integer,
   auteur_email              varchar(255),
+  constraint ck_news_type_n check (type_n in (0,1,2)),
   constraint pk_news primary key (id))
+;
+
+create table project (
+  id                        bigint not null,
+  name                      varchar(255),
+  folder                    varchar(255),
+  constraint pk_project primary key (id))
 ;
 
 create table score (
@@ -32,9 +41,17 @@ create table user (
   constraint pk_user primary key (email))
 ;
 
+
+create table project_user (
+  project_id                     bigint not null,
+  user_email                     varchar(255) not null,
+  constraint pk_project_user primary key (project_id, user_email))
+;
 create sequence jeu_seq;
 
 create sequence news_seq;
+
+create sequence project_seq;
 
 create sequence score_seq;
 
@@ -49,6 +66,10 @@ create index ix_score_jeu_3 on score (jeu_nom);
 
 
 
+alter table project_user add constraint fk_project_user_project_01 foreign key (project_id) references project (id) on delete restrict on update restrict;
+
+alter table project_user add constraint fk_project_user_user_02 foreign key (user_email) references user (email) on delete restrict on update restrict;
+
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
@@ -56,6 +77,10 @@ SET REFERENTIAL_INTEGRITY FALSE;
 drop table if exists jeu;
 
 drop table if exists news;
+
+drop table if exists project;
+
+drop table if exists project_user;
 
 drop table if exists score;
 
@@ -66,6 +91,8 @@ SET REFERENTIAL_INTEGRITY TRUE;
 drop sequence if exists jeu_seq;
 
 drop sequence if exists news_seq;
+
+drop sequence if exists project_seq;
 
 drop sequence if exists score_seq;
 

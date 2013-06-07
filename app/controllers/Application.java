@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import play.api.templates.Html;
 import play.data.*;
 
 import views.html.*;
@@ -11,6 +12,7 @@ import models.*;
 import play.mvc.BodyParser;                     
 import play.libs.Json;
 import play.libs.Json.*;                        
+import scala.collection.mutable.StringBuilder;
 import static play.libs.Json.toJson;
 import org.codehaus.jackson.JsonNode;           
 import org.codehaus.jackson.node.ObjectNode;
@@ -27,7 +29,7 @@ public class Application extends Controller {
     	if (username != null) {
     		user = User.find.byId(username);
     	}
-    	return ok(index.render(user));
+    	return ok(index.render(user, News.find.all()));
     }
     
     public static Result login() {
@@ -154,4 +156,3 @@ public class Application extends Controller {
 		}
     }
 }
-

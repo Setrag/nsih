@@ -1,6 +1,8 @@
 
 # Users
 
+users:
+
 - !!models.User
     email:      guillaume@sample.com
     name:       Guillaume Bort
@@ -35,13 +37,52 @@
 - !!models.User
     email:      erwan@sample.com
     name:       Erwan Loisant
-    password:   secret           
-            
+    password:   secret
+
+# News
+
+news:
+
+    - !!models.News
+        id:        1
+        titre:     Lancement du jeu Symon !
+        contenu:   L'equipe de developement est fier de pouvoir vous informez de la sortie du premier jeu de la serie N'si'H.
+        typeN:     INFO
+
+    - !!models.News
+        id:        2
+        titre:     Symon Champion Quest
+        contenu:   La recherche d'un nouveau champion va bientot commencé, le record est de 12pts. Le championnat durera 3 jours.
+        typeN:     EVENT
+        
+    - !!models.News
+        id:        3
+        titre:     Symon New Champion 16pts
+        contenu:   Un nouveau champion est née, en battant le record établie du Symon, son nom Laurent !!
+        typeN:     SCORES
+                
+    - !!models.News
+        id:        4
+        titre:     Symon New Champion 18pts
+        contenu:   Un nouveau champion est née, en battant le record établie du Symon, son nom Xavier !!
+        typeN:     SCORES
+
+# Jeu
+
+jeu:
+       
 - !!models.Jeu
   nom: Symon
 
 - !!models.Jeu
-  nom: Tetrys       
+  nom: Nsih        
+
+- !!models.Jeu
+  nom: Tetrys
+  
+# Score
+
+scores:
            
 - !!models.Score
     valeur: 10

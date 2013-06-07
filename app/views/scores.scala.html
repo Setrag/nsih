@@ -2,10 +2,8 @@
 
 @page("Nsih - Joueurs d'élite") {
 	<ul>
-	@for(score <- scoresList) {
-		<li>@score.jeu.nom, @score.valeur - @score.auteur.name</li>
-	}
+		@for(score <- scoresList) {
+			<li>@score.jeu.nom, @score.valeur - @score.auteur.name</li>
+		}
 	</ul>   
-} {
-	<h2></h2>
 }

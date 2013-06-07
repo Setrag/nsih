@@ -1,8 +1,12 @@
-@(news: Html)
-
-<div id="news">
-<h2 class="newsTitle">Quoi de neuf?</h2>
-	<div class="newsContent">
-		@news
+<div id="newsBox">
+	<h2 class="newsBoxTitle">Quoi de neuf?</h2>
+	<div class="newsBoxContent">
+		@for(news <- News.find.all()) {
+			@if(news.typeN.toString == "SCORES") {
+				<p class="newsBoxLine">
+					@news.typeN @news.titre
+				</p>
+			}
+		}
 	</div>
 </div>

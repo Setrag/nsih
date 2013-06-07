@@ -1,17 +1,23 @@
-@(user: User)
+@(user: User, newsList: List[News])
 
 @page("Nsih - Accueil"){
 	<header>
-		@if(user != null) {
-			Connecté en tant que @user.email@if(user.isAdmin == true) {, administrateur.}
-		}
-        <hgroup>
-            <h1>Dernièrement</h1>
+        <hgroup id="headNews">
+            <h1>Dernièrement </h1>
             <h2>Qu'est ce que.. quoi</h2>
         </hgroup>
     </header>
 
     <article class="news">
-       	
+        @for(news <- newsList) {
+			<div class="newsLine">
+				<header>
+					@news.typeN: @news.titre
+				</header>
+				<p class="newsLineContenu">
+					@news.contenu
+				</p>
+			</div>
+		}
     </article>
-} {<div><p>NEWS</p></div>}
+}
