@@ -46,14 +46,10 @@ public class Application extends Controller {
     	return ok(scores.render("Scores", Score.find.orderBy().asc("jeu.nom").orderBy().desc("valeur").findList()));
     }
     
-    @BodyParser.Of(BodyParser.Json.class)
-	public static Result scoresJson() {
-		JsonNode json = request().body().asJson();
-		ObjectNode result = Json.newObject();
-		String name = ""; //= json.findPath("name").getTextValue();
-		List<Score> listScores = Score.find.all();
+	public static Result scoresSymon() {
+		List<Score> listScores = Score.find.where().eq("jeu.nom", "Symon").findList();
 		
-		return ok(scoresJson.render(listScores));
+		return ok(scoresSymon.render(listScores));
 	}
     
     @Security.Authenticated(Secured.class)
@@ -87,9 +83,9 @@ public class Application extends Controller {
     	if (user != null && jeu != null && scoreVal >= 0.0f) {
     		Score score = new Score(scoreVal, user, jeu);
     		score.save();
-    		return ok();
+    		return ok("Score submitted successfully.");
     	} else {
-    		return badRequest();
+    		return ok("Username not found.");
     	}
     }
     
