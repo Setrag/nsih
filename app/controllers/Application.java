@@ -49,7 +49,7 @@ public class Application extends Controller {
     }
     
 	public static Result scoresSymon() {
-		List<Score> listScores = Score.find.where().eq("jeu.nom", "Symon").findList();
+		List<Score> listScores = Score.find.where().eq("jeu.nom", "Symon").order().desc("valeur").findList();
 		
 		return ok(scoresSymon.render(listScores));
 	}

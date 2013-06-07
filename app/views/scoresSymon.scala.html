@@ -1,8 +1,4 @@
-@(scoresList: List[Score])
-
-<ul>
-@for(score <- scoresList) {
-	@score.valeur @score.auteur.name<br>
+@(scoresList: List[Score])@for(score <- scoresList) {
+	@score.valeur @score.auteur.name
 }
-</ul>
 
