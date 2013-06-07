@@ -52,7 +52,7 @@ news:
     - !!models.News
         id:        2
         titre:     Championnat de Symon
-        contenu:   La recherche d'un nouveau champion va bientot commencer. Le record est à 12pts pour le moment. Ce championnat durera 3 jours.
+        contenu:   La recherche d'un nouveau champion va bientot commencer. Le record est détenu par Guillaume Bort avec 14 points. Ce championnat durera 3 jours.
         typeN:     EVENT
         
     - !!models.News
@@ -101,19 +101,26 @@ scores:
 - !!models.Score
     valeur: 16
     auteur: !!models.User
-               email: guillaume@sample.com
+               email: laurent@alepee.fr
     jeu:    !!models.Jeu
                nom: Symon
                
 - !!models.Score
     valeur: 18
     auteur: !!models.User
-               email: guillaume@sample.com
+               email: xavier@martin.fr
+    jeu:    !!models.Jeu
+               nom: Symon
+               
+- !!models.Score
+    valeur: 5350
+    auteur: !!models.User
+               email: xavier@martin.fr
     jeu:    !!models.Jeu
                nom: Tetrys
                
 - !!models.Score
-    valeur: 6
+    valeur: 1390
     auteur: !!models.User
                email: guillaume@sample.com
     jeu:    !!models.Jeu
