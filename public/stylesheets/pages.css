@@ -26,6 +26,10 @@ html {
 			#main p, #main h1, #main h2, #main h3, #main h4 {margin-bottom: 5px; margin-top: 5px;}
 			#headNews {border-bottom: 1px solid black}
 			.news {margin-top: 10px;}
+			.newsLine header {padding-left: 3px;  border: 1px solid black; border-radius: 10px;}
+			.newsLineHeaderSCORES {background-color: #F2C08A;}
+			.newsLineHeaderINFO {background-color: #A5B7F2;}
+			.newsLineHeaderEVENT {background-color: #8EE691;}
 			.newsLine .newsLineContenu {padding-left: 10px;}
 	#newsBox {width: 18%; border: 1px solid gray; border-radius: 4px; position: absolute; right: 1%; top: 5px;}
 	#newsBox .newsBoxTitle {border-bottom: 1px solid gray; background: #EEE; padding-left: 30px;}

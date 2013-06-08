@@ -11,7 +11,7 @@
     <article class="news">
         @for(news <- newsList) {
 			<div class="newsLine">
-				<header>
+				<header class="newsLineHeader@news.typeN">
 					@news.typeN: @news.titre
 				</header>
 				<p class="newsLineContenu">
