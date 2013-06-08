@@ -32,7 +32,43 @@ public class Application extends Controller {
     	return ok(index.render(user, News.find.all()));
     }
     
-    public static Result login() {
+    
+    /*
+     * GESTION DES SCORES
+     */
+    
+    public static Result scores() {
+    	return ok(scores.render("Scores", Score.find.orderBy().asc("jeu.nom").orderBy().desc("valeur").findList()));
+    }
+    
+	public static Result scoresSymon() {
+		List<Score> listScores = Score.find.where().eq("jeu.nom", "Symon").order().desc("valeur").findList();
+		
+		return ok(scoresSymon.render(listScores));
+	}
+	
+	public static Result soumettreScore() {
+    	float scoreVal = Float.parseFloat(request().queryString().get("score")[0]);
+    	String userStr = request().queryString().get("user")[0];
+    	String jeuStr = request().queryString().get("jeu")[0];
+    	
+    	User user = User.find.byId(userStr);
+    	Jeu jeu = Jeu.find.byId(jeuStr);
+    	if (user != null && jeu != null && scoreVal >= 0.0f) {
+    		Score score = new Score(scoreVal, user, jeu);
+    		score.save();
+    		return ok("Score submitted successfully.");
+    	} else {
+    		return ok("Username not found.");
+    	}
+    }
+	
+	
+	/*
+	 * ESPACE PERSONNEL
+	 */
+	
+	public static Result login() {
         return ok(login.render(Form.form(Login.class)) );
     }
     
@@ -42,20 +78,6 @@ public class Application extends Controller {
 		return redirect(
 		    routes.Application.login()
 		);
-	}
-    
-    public static Result scores() {
-    	return ok(scores.render("Scores", Score.find.orderBy().asc("jeu.nom").orderBy().desc("valeur").findList()));
-    }
-    
-    @BodyParser.Of(BodyParser.Json.class)
-	public static Result scoresJson() {
-		JsonNode json = request().body().asJson();
-		ObjectNode result = Json.newObject();
-		String name = ""; //= json.findPath("name").getTextValue();
-		List<Score> listScores = Score.find.all();
-		
-		return ok(scoresJson.render(listScores));
 	}
     
     @Security.Authenticated(Secured.class)
@@ -79,21 +101,6 @@ public class Application extends Controller {
     	//return ok(espacePerso.render(user, "Espace perso", Score.find.where().select("*").fe ));
     }
     
-    public static Result soumettreScore() {
-    	float scoreVal = Float.parseFloat(request().queryString().get("score")[0]);
-    	String userStr = request().queryString().get("user")[0];
-    	String jeuStr = request().queryString().get("jeu")[0];
-    	
-    	User user = User.find.byId(userStr);
-    	Jeu jeu = Jeu.find.byId(jeuStr);
-    	if (user != null && jeu != null && scoreVal >= 0.0f) {
-    		Score score = new Score(scoreVal, user, jeu);
-    		score.save();
-    		return ok();
-    	} else {
-    		return badRequest();
-    	}
-    }
     
     public static Result authenticate() {
 		Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
@@ -123,12 +130,22 @@ public class Application extends Controller {
 		}
     }
     
+    
+    /* 
+     * ADMINISTRATION
+     */ 
+    
     public static Result supprimerUtilisateur() {
 		Form<FormSupprimerUtilisateur> deleteUserForm = Form.form(FormSupprimerUtilisateur.class).bindFromRequest();
 		if (deleteUserForm.hasErrors()) {
 		    return badRequest();
 		} else {
 		    User user = User.find.where().eq("email", deleteUserForm.get().email).findUnique();
+		    if (user == null) {
+		    	return badRequest("Utilisateur inconnu.");
+		    } else if (user.email.equals(session().get("email"))) {
+		    	return badRequest("Le suicide n'est pas la solution.");
+		    }
 		    
 		    List<Score> listScore = Score.find.where().eq("auteur.email", user.email).findList();
 		    for (Score score : listScore) {

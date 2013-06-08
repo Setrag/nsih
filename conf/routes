@@ -6,7 +6,7 @@
 GET		/					controllers.Application.index()
 
 GET		/scores				controllers.Application.scores()
-GET		/scoresJson			controllers.Application.scoresJson()
+GET		/scoresSymon		controllers.Application.scoresSymon()
 
 GET		/login				controllers.Application.login()
 GET     /logout				controllers.Application.logout()
