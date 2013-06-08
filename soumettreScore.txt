@@ -1,1 +1,0 @@
-http://localhost:9000/soumettrescore?&user=xavier@martin.fr&jeu=Symon&score=10.0
